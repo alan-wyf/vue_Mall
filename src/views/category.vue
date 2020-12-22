@@ -1,32 +1,38 @@
+/* eslint-disable eqeqeq */
 <template>
-    <div id="category">
-        <van-search placeholder="商品搜索 共239万款好物" input-align='center' v-model="searchData" />
+  <div id="category">
+    <van-search
+      placeholder="商品搜索 共239万款好物"
+      input-align="center"
+      v-model="searchData"
+    />
 
-        <van-tree-select
-        :items="items"
-        :main-active-index.sync="activeIndex"
-        height='calc(100vh - 104px)'
-        @click-nav='changeRight'
-        >
-            <template slot="content">
-                <div class='imgbanner'>
-                 <img width="100%" :src="bannerImg" alt="">
-                </div>
+    <van-tree-select
+      :items="items"
+      :main-active-index.sync="activeIndex"
+      height="calc(100vh - 104px)"
+      @click-nav="changeRight"
+    >
+      <template slot="content">
+        <div class="imgbanner">
+          <img width="100%" :src="bannerImg" alt="" />
+        </div>
 
-                <van-grid :column-num="3">
+        <van-grid :column-num="3">
+          <van-grid-item
+            v-for="(item, index) in subCategoryList"
+            :key="index"
+            :icon="item.wap_banner_url"
+            :text="item.name"
+            :to="'/categoryList/' + item.id"
+          >
+          </van-grid-item>
+        </van-grid>
+      </template>
+    </van-tree-select>
 
-                    <van-grid-item v-for="(item,index) in subCategoryList" :key="index" :icon="item.wap_banner_url" :text="item.name" :to="'/categoryList/'+item.id" >
-
-                    </van-grid-item>
-
-                </van-grid>
-
-            </template>
-
-        </van-tree-select>
-
-        <tab-btn></tab-btn>
-    </div>
+    <tab-btn></tab-btn>
+  </div>
 </template>
 
 <script>
@@ -56,7 +62,7 @@ export default {
     items: function () {
       // [{ text: '分组 1' }, { text: '分组 2' }],
       // console.log(this.data.categoryList)
-      if (this.data.categoryList == undefined) {
+      if (this.data.categoryList === undefined) {
         return []
       } else {
         console.log(123)
@@ -97,11 +103,11 @@ export default {
 </script>
 
 <style lang="less">
-    #category{
-        .imgbanner{
-            width: 100%;
-            box-sizing: border-box;
-            padding: 10px;
-        }
-    }
+#category {
+  .imgbanner {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+}
 </style>

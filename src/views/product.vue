@@ -138,7 +138,7 @@ export default {
       const chooseContent = skuData.selectedSkuComb['s-1'] + '_' + skuData.selectedSkuComb['s-2']
       // console.log(chooseContent)
       const resultPro = this.data.productList.filter((item, index) => {
-        if (item.goods_specification_ids == chooseContent) {
+        if (item.goods_specification_ids === chooseContent) {
           return true
         } else {
           return false
@@ -150,7 +150,7 @@ export default {
       const data = cartRes.data.data
       console.log(cartRes.data)
 
-      this.$store.commit('setCarList', data.cartList),
+      this.$store.commit('setCarList', data.cartList)
       this.$store.commit('setCartTotal', data.cartTotal)
     },
     chooseSku () {
@@ -160,7 +160,7 @@ export default {
   },
   computed: {
     images: function () {
-      if (this.data.gallery == undefined) {
+      if (this.data.gallery === undefined) {
         return []
       } else {
         return this.data.gallery
